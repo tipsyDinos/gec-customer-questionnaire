@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Questionnaire</title>
+    <style>
+        /* Basic styling for the form */
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: sans-serif;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="questionnaireForm">
+        <h2>Customer Questionnaire</h2>
+
+        <label for="legalName">Legal Name:</label>
+        <input type="text" id="legalName" name="legalName" required>
+        <div id="legalNameError" class="error"></div>
+
+        <label for="shortName">Short Name:</label>
+        <input type="text" id="shortName" name="shortName" required>
+         <div id="shortNameError" class="error"></div>
+
+        <label for="rpNumber">RP Number:</label>
+        <input type="text" id="rpNumber" name="rpNumber" required>
+         <div id="rpNumberError" class="error"></div>
+
+        <label for="remitterType">Remitter Type:</label>
+        <input type="text" id="remitterType" name="remitterType" required>
+        <div id="remitterTypeError" class="error"></div>
+
+        <label for="payrollGeneralName">Payroll (General) - Name:</label>
+        <input type="text" id="payrollGeneralName" name="payrollGeneralName">
+
+        <label for="payrollGeneralPhone">Payroll (General) - Phone Number:</label>
+        <input type="text" id="payrollGeneralPhone" name="payrollGeneralPhone">
+
+        <label for="payrollGeneralEmail">Payroll (General) - Email Address:</label>
+        <input type="email" id="payrollGeneralEmail" name="payrollGeneralEmail">
+
+         <label for="roeName">ROE - Name:</label>
+        <input type="text" id="roeName" name="roeName">
+
+        <label for="roePhone">ROE - Phone Number:</label>
+        <input type="text" id="roePhone" name="roePhone">
+
+        <label for="roeEmail">ROE - Email Address:</label>
+        <input type="email" id="roeEmail" name="roeEmail">
+
+        <label for="t4Name">T4 - Name:</label>
+        <input type="text" id="t4Name" name="t4Name">
+
+        <label for="t4Phone">T4 - Phone Number:</label>
+        <input type="text" id="t4Phone" name="t4Phone">
+
+        <label for="t4Email">T4 - Email Address:</label>
+        <input type="email" id="t4Email" name="t4Email">
+
+        <label for="financialInstitution">Financial Institution:</label>
+        <input type="text" id="financialInstitution" name="financialInstitution" required>
+
+        <label for="bankName">Bank Name:</label>
+        <input type="text" id="bankName" name="bankName" required>
+
+        <label for="bankId">Bank ID:</label>
+        <input type="text" id="bankId" name="bankId" required>
+
+        <label for="transit">Transit:</label>
+        <input type="text" id="transit" name="transit" required>
+
+        <label for="account">Account:</label>
+        <input type="text" id="account" name="account" required>
+
+        <label for="eftOriginator">EFT Originator:</label>
+        <input type="text" id="eftOriginator" name="eftOriginator">
+
+        <label for="dataCentre">Data Centre:</label>
+        <input type="text" id="dataCentre" name="dataCentre">
+
+        <label for="fcn">FCN:</label>
+        <input type="text" id="fcn" name="fcn">
+
+        <label for="payrollProvider">Payroll Provider:</label>
+        <input type="text" id="payrollProvider" name="payrollProvider" required>
+
+        <label for="accountingSoftware">Accounting Software:</label>
+        <textarea id="accountingSoftware" name="accountingSoftware" rows="4" required></textarea>
+
+        <button type="submit">Submit Questionnaire</button>
+        <div id="submissionMessage"></div>
+    </form>
+
+    <script>
+    const form = document.getElementById('questionnaireForm');
+    const submissionMessage = document.getElementById('submissionMessage');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Basic client-side validation (you should also validate on the server)
+         let hasErrors = false;
+        const legalNameInput = document.getElementById('legalName');
+        const legalNameError = document.getElementById('legalNameError');
+         if (!legalNameInput.value.trim()) {
+            legalNameError.textContent="Legal Name is required";
+            hasErrors=true;
+         }else{
+            legalNameError.textContent = "";
+         }
+
+        const shortNameInput = document.getElementById('shortName');
+        const shortNameError = document.getElementById('shortNameError');
+         if (!shortNameInput.value.trim()) {
+            shortNameError.textContent="Short Name is required";
+            hasErrors=true;
+         }else{
+            shortNameError.textContent = "";
+         }
+
+        const rpNumberInput = document.getElementById('rpNumber');
+        const rpNumberError = document.getElementById('rpNumberError');
+         if (!rpNumberInput.value.trim()) {
+            rpNumberError.textContent="RP Number is required";
+            hasErrors=true;
+         }else{
+            rpNumberError.textContent = "";
+         }
+        const remitterTypeInput = document.getElementById('remitterType');
+        const remitterTypeError = document.getElementById('remitterTypeError');
+         if (!remitterTypeInput.value.trim()) {
+            remitterTypeError.textContent="Remitter Type is required";
+            hasErrors=true;
+         }else{
+            remitterTypeError.textContent = "";
+         }
+        const financialInstitutionInput = document.getElementById('financialInstitution');
+        const financialInstitutionError = document.getElementById('financialInstitutionError');
+         if (!financialInstitutionInput.value.trim()) {
+            financialInstitutionError.textContent="Financial Institution is required";
+            hasErrors=true;
+         }else{
+            financialInstitutionError.textContent = "";
+         }
+        const bankNameInput = document.getElementById('bankName');
+        const bankNameError = document.getElementById('bankNameError');
+         if (!bankNameInput.value.trim()) {
+            bankNameError.textContent="Bank Name is required";
+            hasErrors=true;
+         }else{
+            bankNameError.textContent = "";
+         }
+        const bankIdInput = document.getElementById('bankId');
+        const bankIdError = document.getElementById('bankIdError');
+         if (!bankIdInput.value.trim()) {
+            bankIdError.textContent="Bank ID is required";
+            hasErrors=true;
+         }else{
+            bankIdError.textContent = "";
+         }
+        const transitInput = document.getElementById('transit');
+        const transitError = document.getElementById('transitError');
+         if (!transitInput.value.trim()) {
+            transitError.textContent="Transit is required";
+            hasErrors=true;
+         }else{
+            transitError.textContent = "";
+         }
+        const accountInput = document.getElementById('account');
+        const accountError = document.getElementById('accountError');
+         if (!accountInput.value.trim()) {
+            accountError.textContent="Account is required";
+            hasErrors=true;
+         }else{
+            accountError.textContent = "";
+         }
+        const payrollProviderInput = document.getElementById('payrollProvider');
+        const payrollProviderError = document.getElementById('payrollProviderError');
+         if (!payrollProviderInput.value.trim()) {
+            payrollProviderError.textContent="Payroll Provider is required";
+            hasErrors=true;
+         }else{
+            payrollProviderError.textContent = "";
+         }
+        const accountingSoftwareInput = document.getElementById('accountingSoftware');
+        const accountingSoftwareError = document.getElementById('accountingSoftwareError');
+         if (!accountingSoftwareInput.value.trim()) {
+            accountingSoftwareError.textContent="Accounting Software is required";
+            hasErrors=true;
+         }else{
+            accountingSoftwareError.textContent = "";
+         }
+        if (hasErrors) {
+            return; // Stop submission if there are errors
+        }
+        // Get form data
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        // Send data to the server (Go backend)
+        fetch('/submit-questionnaire', {  //  <-  Change this URL to match your Go server's endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            if (responseData.success) {
+                submissionMessage.textContent = 'Questionnaire submitted successfully!';
+                form.reset(); // Clear the form
+            } else {
+                submissionMessage.textContent = 'Error: ' + responseData.message;
+            }
+        })
+        .catch(error => {
+            submissionMessage.textContent = 'Error: ' + error.message;
+        });
+    });
+    </script>
+</body>
+</html>
